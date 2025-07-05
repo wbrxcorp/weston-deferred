@@ -46,6 +46,7 @@ void wait_for_physical_display(int polling_interval)
             std::getline(status_file, status);
             if (status == "connected") {
                 sd_journal_print(LOG_INFO, "Found connected display: %s", entry.path().filename().string().c_str());
+                sd_notify(0, "STATUS=");
                 return;
             }
         }
